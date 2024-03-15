@@ -2,10 +2,12 @@
 '''
 Create a summary of Niema's Twitter blocks
 '''
+from datetime import datetime
 from gzip import open as gopen
 from json import loads as jloads
 from os.path import isfile
 from PIL import Image, ImageFont, ImageDraw
+from pytz import timezone
 from sys import argv, stderr
 
 # useful constants
@@ -15,6 +17,7 @@ IMG_FONT_SIZE = 30
 IMG_FONT = ImageFont.truetype(IMG_FONT_PATH, IMG_FONT_SIZE)
 IMG_WIDTH_PER_SYMBOL = 18
 IMG_HEIGHT_PER_LINE = 28
+TIMEZONE = timezone('America/Los_Angeles')
 
 # main program
 if __name__ == "__main__":
@@ -38,6 +41,7 @@ if __name__ == "__main__":
 
     # create summary file
     summary_data = ""
+    summary_data += "Summary Generated %s\n\n" % datetime.now(tz=TIMEZONE).strftime("%Y-%m-%d %H:%M:%S %Z")
     summary_data += "- Total Blocked Accounts: %s\n" % '{:,}'.format(len(blocked_IDs))
     f = open('summary.txt', 'w'); f.write(summary_data); f.close()
     img_width = max(len(l) for l in summary_data.splitlines()) * IMG_WIDTH_PER_SYMBOL
