@@ -1,6 +1,7 @@
 # output files
 blocked_accounts.txt*
 summary.txt*
+summary.png
 
 # Byte-compiled / optimized / DLL files
 __pycache__/
