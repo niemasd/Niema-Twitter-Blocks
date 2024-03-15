@@ -9,7 +9,7 @@ jobs:
     - name: Set up environment
       run: |
         sudo apt-get update && \
-        sudo apt-get install -y python3-pip && \
+        sudo apt-get install -y python3-pip fonts-freefont-ttf && \
         sudo -H pip3 install pillow
     - name: Run data building scripts
       run: |
